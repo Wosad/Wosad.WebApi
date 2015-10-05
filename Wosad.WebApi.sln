@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wosad.WebApi", "Wosad.WebApi\Wosad.WebApi.csproj", "{694ED4A8-D990-41B7-8ACE-D841F4656C2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wosad.WebApi.Tests", "Wosad.WebApi.Tests\Wosad.WebApi.Tests.csproj", "{D830D14A-BE98-44FC-B381-25C5FAD52771}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wosad.WebApi.Models", "Wosad.WebApi.Models\Wosad.WebApi.Models.csproj", "{AEB89B44-2EBE-4847-8C94-3C7E4DD19AFC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{43E27AA1-692C-430A-AAA4-B270F5EFCD4D}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{330A3BE5-9683-4424-B43C-242A69B8D368}"
+	ProjectSection(SolutionItems) = preProject
+		License.txt = License.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{694ED4A8-D990-41B7-8ACE-D841F4656C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{694ED4A8-D990-41B7-8ACE-D841F4656C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{694ED4A8-D990-41B7-8ACE-D841F4656C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{694ED4A8-D990-41B7-8ACE-D841F4656C2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D830D14A-BE98-44FC-B381-25C5FAD52771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D830D14A-BE98-44FC-B381-25C5FAD52771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D830D14A-BE98-44FC-B381-25C5FAD52771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D830D14A-BE98-44FC-B381-25C5FAD52771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEB89B44-2EBE-4847-8C94-3C7E4DD19AFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEB89B44-2EBE-4847-8C94-3C7E4DD19AFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEB89B44-2EBE-4847-8C94-3C7E4DD19AFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEB89B44-2EBE-4847-8C94-3C7E4DD19AFC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
