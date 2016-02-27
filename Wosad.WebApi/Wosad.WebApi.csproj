@@ -50,9 +50,53 @@
       <HintPath>..\packages\Clipper.6.2.10\lib\net40\clipper_library.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DynamoCore, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\DynamoCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DynamoShapeManager, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\DynamoShapeManager.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DynamoUtilities, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\DynamoUtilities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ProtoCore, Version=0.9.0.3147, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\ProtoCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ProtoGeometry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\ProtoGeometry.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ProtoInterface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamoVisualProgramming.Core.0.9.0\lib\net45\ProtoInterface.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -63,6 +107,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -111,19 +159,62 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Wosad.Common, Version=0.0.1.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Wosad.Common.0.0.1.3\lib\net45\Wosad.Common.dll</HintPath>
+    <Reference Include="Wosad">
+      <HintPath>Lib\Wosad.dll</HintPath>
+    </Reference>
+    <Reference Include="Wosad.Analysis, Version=0.0.1.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Wosad.Analysis.0.0.1.7\lib\net45\Wosad.Analysis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Wosad.Common, Version=0.0.3.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Wosad.Common.0.0.3.3\lib\net45\Wosad.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Wosad.Concrete, Version=0.0.3.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Wosad.Concrete.0.0.3.3\lib\net45\Wosad.Concrete.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Wosad.Loads, Version=0.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Wosad.Loads.0.0.1.1\lib\net45\Wosad.Loads.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Wosad.Steel, Version=0.0.3.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Wosad.Steel.0.0.3.3\lib\net45\Wosad.Steel.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Compile Include="ApiControllers\AnalysisBeamFlexureController.cs" />
+    <Compile Include="ApiControllers\AnalysisBeamTorsionController.cs" />
+    <Compile Include="ApiControllers\AnalysisSectionAISCStandardShapePropertiesController.cs" />
+    <Compile Include="ApiControllers\AnalysisSectionElasticStressController.cs" />
+    <Compile Include="ApiControllers\AnalysisSectionTorsionalStressController.cs" />
+    <Compile Include="ApiControllers\ConcreteACI31814FlexureController.cs" />
+    <Compile Include="ApiControllers\ConcreteACI31814GeneralMaterialConcreteMaterialController.cs" />
+    <Compile Include="ApiControllers\ConcreteACI31814GeneralMaterialRebarMaterialController.cs" />
+    <Compile Include="ApiControllers\ConcreteACI31814GeneralRebarController.cs" />
+    <Compile Include="ApiControllers\ConcreteACI31814GeneralSectionRectangularSectionSinglyReinforcedController.cs" />
+    <Compile Include="ApiControllers\ConcreteACI31814SectionShearAndTorsionOneWayShearController.cs" />
+    <Compile Include="ApiControllers\LoadsASCE710GeneralController.cs" />
+    <Compile Include="ApiControllers\LoadsASCE710GravityDeadController.cs" />
+    <Compile Include="ApiControllers\LoadsASCE710GravityLiveController.cs" />
+    <Compile Include="ApiControllers\SteelAISC10CombinationController.cs" />
+    <Compile Include="ApiControllers\SteelAISC10CompositeAnchorController.cs" />
+    <Compile Include="ApiControllers\SteelAISC10CompositeFlexureController.cs" />
+    <Compile Include="ApiControllers\SteelAISC10ConnectionAffectedElementsController.cs" />
+    <Compile Include="ApiControllers\SteelAISC10ConnectionBoltedController.cs" />
+    <Compile Include="ApiControllers\SteelAISC10ConnectionSpecialCaseExtendedSinglePlateController.cs" />
+    <Compile Include="ApiControllers\SteelAISC10ConnectionWeldedController.cs" />
+    <Compile Include="ApiControllers\SteelAISC10GeneralMaterialPropertiesController.cs" />
+    <Compile Include="ApiControllers\SteelAISC10ShearStrengthController.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\Extensions\ResponseDocumentationExtension.cs" />
     <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
     <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
     <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
@@ -186,6 +277,7 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="LICENSE" />
     <Content Include="NOTICE" />
+    <None Include="Properties\PublishProfiles\FileSystemPublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

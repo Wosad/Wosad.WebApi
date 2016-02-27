@@ -1,13 +1,829 @@
 <?xml version="1.0"?>
-
-<!--
-	Copyright (C) 2015 Wosad Inc
--->
 <doc>
     <assembly>
         <name>Wosad.WebApi</name>
     </assembly>
     <members>
+        <member name="T:Wosad.WebApi.Controllers.AnalysisBeamFlexureController">
+             <summary>
+            Analysis.Beam.Flexure Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.AnalysisBeamFlexureController.BeamDeflections(System.String,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Calculation of beam deflections </summary>
+            <param name="BeamDeflectionCaseId"> Case ID used in calculation of the beam deflection</param>
+            <param name="L"> member span length </param>
+            <param name="P"> Concentrated load in beam, or axial load in compression member </param>
+            <param name="M"> Concentrated moment </param>
+            <param name="w"> Uniformly distributed load </param>
+            <param name="E"> Modulus of elasticity of steel </param>
+            <param name="I"> Moment of inertia (I_x or I_y where applicable) </param>
+            <param name="a_load"> Load offset dimension </param>
+            <param name="b_load"> Load offset dimension </param>
+            <param name="c_load"> Load offset dimension </param>
+            <param name="P1"> Concentrated load 1, when multiple point loads are present </param>
+            <param name="P2"> Concentrated load 2, when multiple point loads are present </param>
+            <param name="M1"> Concentrated moment 1, when multiple point moments are applied </param>
+            <param name="M2"> Concentrated moment 2, when multiple point moments are applied </param>
+            <returns name="Delta_max"> Maximum deflection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.AnalysisBeamFlexureController.BeamForces(System.String,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Calculation of beam forces </summary>
+            <param name="BeamForcesCaseId"> Case ID used in calculation of the beam forces </param>
+            <param name="L"> member span length </param>
+            <param name="X"> Distance from left support </param>
+            <param name="P"> Concentrated load in beam, or axial load in compression member </param>
+            <param name="M"> Concentrated moment </param>
+            <param name="w"> Uniformly distributed load </param>
+            <param name="a_load"> Load offset dimension </param>
+            <param name="b_load"> Load offset dimension </param>
+            <param name="c_load"> Load offset dimension </param>
+            <param name="P1"> Concentrated load 1, when multiple point loads are present </param>
+            <param name="P2"> Concentrated load 2, when multiple point loads are present </param>
+            <param name="M1"> Concentrated moment 1, when multiple point moments are applied </param>
+            <param name="M2"> Concentrated moment 2, when multiple point moments are applied </param>
+            <returns>
+             name="M_max" Maximum positive moment 
+             name="M_min" Maximum negative moment 
+             name="V_max" Maximum shear (absolute value) 
+             name="M_x" Moment at location X 
+             name="V_x" Shear at loaction X 
+            </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.AnalysisBeamTorsionController">
+             <summary>
+            Analysis.Beam.Torsion Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.AnalysisBeamTorsionController.TorsionalFunctionValues(System.String,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Evaluation of torsional functions </summary>
+            <param name="TorsionalFunctionCaseId"> Case ID used in calculation of the values of torsional functions (per AISC design guide 9) </param>
+            <param name="E"> Modulus of elasticity </param>
+            <param name="G"> Shear modulus of elasticity </param>
+            <param name="J"> Torsional constant for the cross-section </param>
+            <param name="L"> member span length </param>
+            <param name="z"> Distance from left support </param>
+            <param name="T"> Concentrated torque </param>
+            <param name="C_w"> Warping constant for the cross-section </param>
+            <param name="t"> Uniformly distributed torque </param>
+            <param name="alpha"> Fraction of total span at the point of concentrated torque </param>
+            <returns>
+             name="theta" Angle of rotation 
+             name="theta_1der" First derivative of angle of rotation with respect to z 
+             name="theta_2der" Second derivative of angle of rotation with respect to z 
+             name="theta_3der" Third derivative of angle of rotation with respect to z 
+            </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.AnalysisSectionAISCStandardShapePropertiesController">
+             <summary>
+            Analysis.Section.AISC.StandardShapeProperties Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.AnalysisSectionAISCStandardShapePropertiesController.ShapeBasicGeometricProperties(System.String)">
+            <summary> Calculates AISC shape geometric properties </summary>
+            <param name="SteelShapeId"> Section name from steel shape database </param>
+            <returns>
+             name="d" Full nominal depth of the section 
+             name="b_f" Width of flange 
+             name="t_f" Thickness of flange 
+             name="t_w" Thickness of web 
+             name="k" Distance from outer face of flange to the web toe of fillet 
+             name="D" Outside diameter of round HSS 
+             name="B" Overall width of rectangular steel section along face transferring load or overall width of rectangular HSS member 
+             name="H_t" Overall depth of square or rectangular HSS 
+             name="t" Thickness of element plate or element wall 
+             name="t_nom" HSS and pipe nominal wall thickness 
+             name="A" Cross-sectional area 
+            </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.AnalysisSectionAISCStandardShapePropertiesController.TorsionalProperties(System.String)">
+            <summary> Calculates AISC shape torsional properties </summary>
+            <param name="SteelShapeId"> Section name from steel shape database </param>
+            <returns>
+             name="J" Torsional constant (Torsional moment of inertia) 
+             name="C" HSS torsional constant 
+             name="C_w" Warping constant 
+             name="W_no" Normalized warping function 
+             name="S_w1" Warping statical moment at point 1 on cross section 
+             name="S_w2" Warping statical moment at point 2 on cross section 
+             name="S_w3" Warping statical moment at point 3 on cross section 
+             name="Q_fl" Statical moment for a point in the flange directly above the vertical edge of the web 
+             name="Q_w" Statical moment for a point at mid-depth of the cross section 
+            </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.AnalysisSectionAISCStandardShapePropertiesController.XAxisProperties(System.String)">
+            <summary> Calculates AISC shape properties about X axis </summary>
+            <param name="SteelShapeId"> Section name from steel shape database </param>
+            <returns>
+             name="x_e" Horizontal distance from designated member edge to member elastic centroidal axis 
+             name="x_p" Horizontal distance from designated member edge to member plastic neutral axis 
+             name="I_x" Moment of inertia about the principal x-axis 
+             name="Z_x" Plastic section modulus about the x-axis 
+             name="S_x" Elastic section modulus taken about the x-axis 
+             name="r_x" Radius of gyration about the x-axis 
+            </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.AnalysisSectionAISCStandardShapePropertiesController.YAxisProperties(System.String)">
+            <summary> Calculates AISC shape properties about Y axis </summary>
+            <param name="SteelShapeId"> Section name from steel shape database </param>
+            <returns>
+             name="y_e" Vertical distance from designated member edge to member elastic centroidal axis 
+             name="y_p" Vertical distance from designated member edge to member plastic neutral axis 
+             name="I_y" Moment of inertia about the principal y-axis 
+             name="Z_y" Plastic section modulus about the y-axis 
+             name="S_y" Elastic section modulus taken about the y-axis. For a channel the minimum section modulus 
+             name="r_y" Radius of gyration about y-axis 
+            </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.AnalysisSectionElasticStressController">
+             <summary>
+            Analysis.Section.ElasticStress Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.AnalysisSectionElasticStressController.NormalStressDueToAxialLoad(System.Double,System.Double)">
+            <summary> Calculates Normal stress due to axial load </summary>
+            <param name="P"> Concentrated load in beam, or axial load in compression member </param>
+            <param name="A"> Area of cross section </param>
+            <returns name="sigma_a"> Normal stress due to axial load </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.AnalysisSectionElasticStressController.NormalStressDueToBending(System.Double,System.Double,System.Double)">
+            <summary> Calculates Normal stress due to bending </summary>
+            <param name="M"> Concentrated moment </param>
+            <param name="y"> Vertical distance from horizontal neutral axis to section point under consideration </param>
+            <param name="I"> Moment of inertia (I_x or I_y where applicable) </param>
+            <returns name="sigma_b"> Normal stress due to bending about either the x or y </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.AnalysisSectionElasticStressController.ShearStressDueToAppliedShear(System.Double,System.Double,System.Double)">
+            <summary> Calculates Shear stress due to applied shear </summary>
+            <param name="V"> Internal shear force </param>
+            <param name="Q"> Statical moment for the point in question </param>
+            <param name="I"> Moment of inertia (I_x or I_y where applicable) </param>
+            <returns name="tau_b"> Shear stress due to applied shear </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.AnalysisSectionTorsionalStressController">
+             <summary>
+            Analysis.Section.TorsionalStress Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.AnalysisSectionTorsionalStressController.NormalStressDueToWarping(System.Double,System.Double,System.Double)">
+            <summary> Calculates Normal stress due to warping in open cross section </summary>
+            <param name="E"> Modulus of elasticity </param>
+            <param name="W_ns"> Normalized warping function at point s </param>
+            <param name="theta_2der"> Second derivative of angle of rotation with respect to z </param>
+            <returns name="sigma_ws"> Normal stress at point s due to warping </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.AnalysisSectionTorsionalStressController.PureTorsionStress(System.Double,System.Double,System.Double)">
+            <summary> Calculates Pure torsion stress in open cross section </summary>
+            <param name="G"> Shear modulus of elasticity </param>
+            <param name="t_el"> Thickness of element </param>
+            <param name="theta_1der"> First derivative of angle of rotation with respect to z </param>
+            <returns name="tau_t"> Pure torsional shear stress </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.AnalysisSectionTorsionalStressController.ShearStressDueToWarping(System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Shear stress due to warping in open cross section </summary>
+            <param name="E"> Modulus of elasticity </param>
+            <param name="S_ws"> Warping statical moment at point s </param>
+            <param name="t_el"> Thickness of element </param>
+            <param name="theta_3der"> Third derivative of angle of rotation with respect to z </param>
+            <returns name="tau_w"> Shear stress due to warping </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.ConcreteACI31814FlexureController">
+             <summary>
+            Concrete.ACI31814.Flexure Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.ConcreteACI31814FlexureController.SectionFlexuralStrength(Concrete.ACI318_14.General.ConcreteSection,System.String)">
+            <summary> Flexural strength </summary>
+            <param name="ReinforcedConcreteSection"> Reinforced concrete section object. Create the object using input parameters first </param>
+            <param name="FlexuralCompressionFiberLocation"> Indicates whether the section in flexure has top or bottom in compression due to stresses from bending moment </param>
+            <returns name="phiM_n"> Design flexural strength at section </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.ConcreteACI31814GeneralMaterialConcreteMaterialController">
+             <summary>
+            Concrete.ACI31814.General.Material.ConcreteMaterial Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.ConcreteACI31814GeneralMaterialRebarMaterialController">
+             <summary>
+            Concrete.ACI31814.General.Material.RebarMaterial Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.ConcreteACI31814GeneralRebarController">
+             <summary>
+            Concrete.ACI31814.General.Rebar Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.ConcreteACI31814GeneralRebarController.BarArea(System.String)">
+            <summary> Bar area </summary>
+            <param name="RebarSizeId"> Rebar designation (number) indicating the size of bar </param>
+            <returns name="A_b"> Area of an individual bar </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.ConcreteACI31814GeneralRebarController.RebarAreaByElementWidthAndIdAndSpacing(System.String,System.Double,System.Double,System.Double)">
+            <summary> Rebar area by width and spacing </summary>
+            <param name="RebarSizeId"> Rebar designation (number) indicating the size of the bar </param>
+            <param name="b_element"> Element width </param>
+            <param name="s"> Center-to-center spacing of reinforcement </param>
+            <param name="N_faces"> Number of faces (layers) of reinforcement </param>
+            <returns name="A_s"> Area of nonprestressed longitudinal tension reinforcement </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.ConcreteACI31814GeneralRebarController.RebarAreaByIdAndNumberOfBars(System.String,System.Double)">
+            <summary> Rebar area by number of bars </summary>
+            <param name="RebarSizeId"> Rebar designation (number) indicating the size of the bar </param>
+            <param name="N_bars"> Number of bars </param>
+            <returns name="A_s"> Area of longitudinal reinforcement </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.ConcreteACI31814GeneralSectionRectangularSectionSinglyReinforcedController">
+             <summary>
+            Concrete.ACI31814.General.Section.RectangularSectionSinglyReinforced Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.ConcreteACI31814SectionShearAndTorsionOneWayShearController">
+             <summary>
+            Concrete.ACI31814.Section.ShearAndTorsion.OneWayShear Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.LoadsASCE710GeneralController">
+             <summary>
+            Loads.ASCE710.General Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.LoadsASCE710GeneralController.BuildingRiskCategory(System.String)">
+            <summary> Calculates Selection of Building risk category - ASCE7-10 </summary>
+            <param name="BuildingOccupancyId"> Occupancy description</param>
+            <returns> "Parameter name: BuildingRiskCategory", Parameter description: Building risk category </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.LoadsASCE710GravityDeadController">
+             <summary>
+            Loads.ASCE710.Gravity.Dead Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.LoadsASCE710GravityDeadController.ComponentWeight_q_D(System.String,System.Double,System.Double,System.Double)">
+            <summary> Calculates Building component weight per surface area of the component (psf) - ASCE7-10. </summary>
+            <param name="ComponentId"> building component id (name) </param>
+            <param name="ComponentOption1"> building component subtype (option1) </param>
+            <param name="ComponentOption2"> building component subtype (option2) </param>
+            <param name="ComponentValue"> building component numerical value</param>
+            <returns> "Parameter name: q_D", Parameter description: Uniformly distributed component dead load </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.LoadsASCE710GravityLiveController">
+             <summary>
+            Loads.ASCE710.Gravity.Live Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.LoadsASCE710GravityLiveController.UniformLiveLoad_q_L(System.String)">
+            <summary> Calculates Minimum uniformly distributed live load (psf) - ASCE7-10. </summary>
+            <param name="SpaceOccupancyId"> description of space for calculation of live loads</param>
+            <returns> Uniformly distributed live load </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.SteelAISC10CombinationController">
+             <summary>
+            Steel.AISC10.Combination Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10CombinationController.InteractionRatio(System.String,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Interaction ratio for the combination of forces </summary>
+            <param name="CombinationCaseId"> Defines a type of interaction equation to be used </param>
+            <param name="N_u"> Required axial strength </param>
+            <param name="T_uTorsion"> Required torsional strength </param>
+            <param name="M_ux"> Required flexural strength with respect to x-axis </param>
+            <param name="M_uy"> Required flexural strength with respect to x-axis </param>
+            <param name="V_ur"> Required shear strength resultant </param>
+            <param name="phiN_n"> Compressive strength </param>
+            <param name="phiT_nTorsion"> Torsional strength </param>
+            <param name="phiM_nx"> Moment strength with respect to section x-axis </param>
+            <param name="phiM_ny"> Moment strength with respect to section y-axis </param>
+            <param name="phiV_nr"> Shear strength resultant </param>
+            <returns name="InteractionRatio"> Interaction ratio </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.SteelAISC10CompositeAnchorController">
+             <summary>
+            Steel.AISC10.Composite.Anchor Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10CompositeAnchorController.DesignSumOfAnchorStrengths(System.Double,System.Double)">
+            <summary> Calculates Strength of headed stud anchor </summary>
+            <param name="N_anchors"> Number of shear anchors along full length of element </param>
+            <param name="Q_n"> Nominal strength of one steel headed stud or steel channel anchor </param>
+            <returns name="SumQ_n"> Sum of the nominal strengths of steel anchors between the point of maximum positive moment and the point of zero moment to either side </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10CompositeAnchorController.HeadedAnchorPositionAndGroupFactors(System.String,System.String,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Strength of headed stud anchor </summary>
+            <param name="HeadedAnchorDeckCondition"> Identifies whether deck runs parallel or perpendicular to beam or there is no deck </param>
+            <param name="HeadedAnchorWeldCase"> Identifies the type of welding between the anchor and shape (through deck or not) </param>
+            <param name="N_saRib"> Number of steel headed stud anchors occupying the same decking rib </param>
+            <param name="e_mid_ht"> Distance from the edge of steel headed stud anchor shank to the steel deck web </param>
+            <param name="h_r"> Nominal height of rib </param>
+            <param name="w_r"> Average width of concrete rib or haunch </param>
+            <returns>
+             name="R_g" Coefficient to account for group effect 
+             name="R_p" Position effect factor for shear anchors 
+            </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10CompositeAnchorController.ShearStrengthOfHeadedAnchor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Shear strength of headed anchor </summary>
+            <param name="d_sa"> Headed anchor diameter </param>
+            <param name="R_g"> Coefficient to account for group effect </param>
+            <param name="R_p"> Position effect factor for shear anchors </param>
+            <param name="fc_prime"> Specified compressive strength of concrete </param>
+            <param name="w_c"> Weight of concrete per unit volume (pcf) </param>
+            <param name="F_u"> Specified minimum tensile strength </param>
+            <returns>
+             name="Q_n" Nominal strength of one steel headed stud or steel channel anchor 
+             name="phiQ_n" Strength of one steel headed stud or steel channel anchor 
+            </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.SteelAISC10CompositeFlexureController">
+             <summary>
+            Steel.AISC10.Composite.Flexure Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10CompositeFlexureController.BeamEffectiveSlabWidth(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Beam effective slab width </summary>
+            <param name="L"> Length of member length of span or unbraced length of member </param>
+            <param name="L_centerLeft"> Beam spacing measured normal to beam span (left side of beam) </param>
+            <param name="L_centerRight"> Beam spacing measured normal to beam span (right side of beam) </param>
+            <param name="L_edgeLeft"> Distance between slab edges measured normal to beam span (left side of beam) </param>
+            <param name="L_edgeRight"> Distance between slab edges measured normal to beam span (right side of beam) </param>
+            <returns name="b_eff"> Effective width of concrete slab in composite beam design </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10CompositeFlexureController.LowerBoundMomentOfInertia(Steel.AISC_10.Composite.CompositeSteelShape,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Lower-bound moment of inertia </summary>
+            <param name="Shape"> Steel shape instance (must be of CompositeSteelShape type) </param>
+            <param name="b_eff"> Effective width of concrete slab in composite beam design </param>
+            <param name="h_solid"> Depth of solid portian of concrete slab on metal deck (fill above deck) </param>
+            <param name="h_rib"> Depth of ribs for corrugated metal deck </param>
+            <param name="F_y"> Specified minimum yield stress </param>
+            <param name="fc_prime"> Specified compressive strength of concrete </param>
+            <param name="SumQ_n"> Sum of the nominal strengths of steel anchors between the point of maximum positive moment and the point of zero moment to either side </param>
+            <returns name="I_LB"> Lower-bound moment of inertia for composite beam </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10CompositeFlexureController.PositiveMomentFlexuralStrength(Steel.AISC_10.Composite.CompositeSteelShape,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Positive moment flexural strength for composite beam </summary>
+            <param name="Shape"> Steel shape instance (must be of CompositeSteelShape type) </param>
+            <param name="b_eff"> Effective width of concrete slab in composite beam design </param>
+            <param name="h_solid"> Depth of solid portian of concrete slab on metal deck (fill above deck) </param>
+            <param name="h_rib"> Depth of ribs for corrugated metal deck </param>
+            <param name="F_y"> Specified minimum yield stress </param>
+            <param name="fc_prime"> Specified compressive strength of concrete </param>
+            <param name="SumQ_n"> Sum of the nominal strengths of steel anchors between the point of maximum positive moment and the point of zero moment to either side </param>
+            <returns name="phiM_n"> Moment strength </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController">
+             <summary>
+            Steel.AISC10.Connection.AffectedElements Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.BlockShearStrength(System.Double,System.Double,System.Double,System.Double,System.Double,System.String)">
+            <summary> Calculates Block shear strength </summary>
+            <param name="A_gv"> Gross area subject to shear </param>
+            <param name="A_nv"> Net area subject to shear </param>
+            <param name="A_nt"> Net area subject to tension </param>
+            <param name="F_y"> Specified minimum yield stress </param>
+            <param name="F_u"> Specified minimum tensile strength </param>
+            <param name="StressDistibutionType"> Type of stress distribution in connected element </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.BoltGroupBearingStrength(System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Strength of bolt group for the bearing on base material limit state </summary>
+            <param name="N_BoltRowParallel"> Number of bolt rows parallel to direction of load </param>
+            <param name="N_BoltRowPerpendicular"> Number of bolt columns perpendicular to direction of load </param>
+            <param name="phiR_nFirstRow"> Bolt bearing strength for first row of bolts </param>
+            <param name="phiR_nInnerRow"> Bolt bearing strength for inner row of bolts </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.BoltGroupShearAndTensionAreas(System.String,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Net and gross shear and tension areas for block shear, shear yielding and shear rupture calculations </summary>
+            <param name="ShearAreaCaseId"> Case selection for shear area calculations in affected elements in connections (block shear, shear yielding, shear rupture).Values are: StraightLine,TBlock,UBlock,Lblock </param>
+            <param name="N_BoltRowParallel"> Number of bolt rows parallel to direction of load (for example number of rows when load is vertical) </param>
+            <param name="N_BoltRowPerpendicular"> Number of bolt columns perpendicular to direction of load (for example number of columns when the load is vertical) </param>
+            <param name="p_parallel"> Bolt spacing in the direction of load </param>
+            <param name="p_perpendicular"> Bolt spacing perpendicular to the direction of load </param>
+            <param name="d_hole"> Bolt hole diameter </param>
+            <param name="t_p"> Thickness of plate </param>
+            <param name="l_edgeParallel"> Edge distance measured parallel to direction of load (for example verical edge distance when the load is vertical) </param>
+            <param name="l_edgePerpendicular"> Edge distance measured perpendicular to direction of load (for example horizontal edge distance when the load is vertical)</param>
+            <returns>
+             name="A_gv" Gross area subject to shear 
+             name="A_nv" Net area subject to shear 
+             name="A_nt" Net area subject to tension 
+            </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.ConnectedElementStrengthInFlexure(Analysis.Section.CustomProfile,System.Double,System.Double,System.Double,System.Boolean,System.Double,System.Double,System.Boolean,System.Double)">
+            <summary> Connected element strength in flexure </summary>
+            <param name="Shape"> Cross section shape </param>
+            <param name="L_b"> Length between points that are either braced against lateral displacement of compression flange or braced against twist of the cross section </param>
+            <param name="F_y"> Specified minimum yield stress </param>
+            <param name="F_u"> Specified minimum tensile strength </param>
+            <param name="HasHolesInTensionFlange"> Identifies if member has holes in tension flange, for checking tension rupture of flange per F13 </param>
+            <param name="A_fg"> Gross area of tension flange </param>
+            <param name="A_fn"> Net area of tension flange </param>
+            <param name="IsCompactDoublySymmetricForFlexure"> Indicates whether shape is compact for flexure and doubly symmetric </param>
+            <param name="C_b"> Lateral-torsional buckling modification factor for nonuniform moment diagrams </param>
+            <returns name="phiM_n"> Moment strength </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.ConnectedElementStrengthInShear(System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Connected element strength in shear </summary>
+            <param name="A_gv"> Gross area subject to shear </param>
+            <param name="F_y"> Specified minimum yield stress </param>
+            <param name="F_u"> Specified minimum tensile strength </param>
+            <param name="A_nv"> Net area subject to shear </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.ConnectedElementStrengthInTension(System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Connected element strength in tension </summary>
+            <param name="A_g"> Gross cross-sectional area of member </param>
+            <param name="F_y"> Specified minimum yield stress </param>
+            <param name="F_u"> Specified minimum tensile strength </param>
+            <param name="A_e"> Effective net area </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.CopedSectionStrengthInFlexure(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.String)">
+            <summary> Calculates Coped section strength in flexure </summary>
+            <param name="d"> Full nominal depth of the section </param>
+            <param name="b_f"> Width of flange </param>
+            <param name="t_f"> Thickness of flange </param>
+            <param name="d_cope"> Depth of cope </param>
+            <param name="c"> Length of cope </param>
+            <param name="t_w"> Thickness of web </param>
+            <param name="F_y"> Specified minimum yield stress </param>
+            <param name="F_u"> Specified minimum tensile strength </param>
+            <param name="BeamCopeCase"> Identifies beam cope condition for stability calculations: single cope vs double cope </param>
+            <returns name="phiM_n"> Moment strength </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.FlangeLocalBending(System.Double,System.Double,System.Double)">
+            <summary> Calculates Concentrated force flange local bending </summary>
+            <param name="F_yf"> Specified minimum yield stress </param>
+            <param name="t_f"> Thickness of flange </param>
+            <param name="l_edge"> Edge distance </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.GussetPlateConfigurationCompactness(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Gusset plate configuration compactness </summary>
+            <param name="t_g"> Gusset plate thickness </param>
+            <param name="c_Gusset"> Shortest distance between closest bolt and beam flange </param>
+            <param name="F_y"> Specified minimum yield stress </param>
+            <param name="E"> Modulus of elasticity of steel </param>
+            <param name="l_1"> Gusset plate distance from beam to nearest row of bolts </param>
+            <returns name="IsGussetCompactConfiguration"> Distinguishes between compact and noncompact configuration for gusset effective length factor </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.GussetPlateEffectiveCompressionLength(System.String,System.Double,System.Double,System.Boolean)">
+            <summary> Calculates Gusset plate effective compression length </summary>
+            <param name="GussetPlateConfigurationId"> Type of gusset plate configuration for calculation of effective length </param>
+            <param name="l_1"> Gusset plate distance from beam to nearest row of bolts </param>
+            <param name="l_2"> Gusset plate distance from column to nearest row of bolts </param>
+            <param name="IsGussetCompactConfiguration"> Indicates whether gusset plate configuration is compact (per Design Guide 29 Appendix C) </param>
+            <returns name="KL_gusset"> Effective length of gusset plate </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.PlateStrengthInCompression(System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Connected element strength in compression </summary>
+            <param name="F_y"> Specified minimum yield stress </param>
+            <param name="KL"> Effective length of element in compression </param>
+            <param name="b"> Width of stiffened or unstiffened compression element </param>
+            <param name="t"> Thickness of element plate or element wall </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.WebCompressionBuckling(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Concentrated force web compression buckling </summary>
+            <param name="t_w"> Thickness of web </param>
+            <param name="h_web"> Clear distance between flanges less the fillet or corner radius for rolled shapes </param>
+            <param name="F_yw"> Specified minimum yield stress of the web material </param>
+            <param name="E"> Modulus of elasticity of steel </param>
+            <param name="d"> Full nominal depth of the section </param>
+            <param name="l_edge"> Edge distance </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.WebLocalCrippling(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Concentrated force web local crippling </summary>
+            <param name="t_w"> Thickness of web </param>
+            <param name="t_f"> Thickness of flange </param>
+            <param name="l_b"> Length of bearing </param>
+            <param name="d"> Full nominal depth of the section </param>
+            <param name="F_yw"> Specified minimum yield stress of the web material </param>
+            <param name="l_edge"> Edge distance </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.WebLocalYielding(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Concentrated force web local yielding </summary>
+            <param name="t_w"> Thickness of web </param>
+            <param name="F_yw"> Specified minimum yield stress of the web material </param>
+            <param name="k"> Distance from outer face of flange to the web toe of fillet </param>
+            <param name="l_b"> Length of bearing </param>
+            <param name="d"> Full nominal depth of the section </param>
+            <param name="l_edge"> Edge distance </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.WebPanelZoneShear(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary> Calculates Concentrated force web panel zone shear </summary>
+            <param name="t_w"> Thickness of web </param>
+            <param name="t_cf"> Thickness of column flange </param>
+            <param name="b_cf"> Width of column flange </param>
+            <param name="d_b"> Nominal fastener diameter </param>
+            <param name="d_c"> Depth of column </param>
+            <param name="F_y"> Specified minimum yield stress </param>
+            <param name="P_u"> Required axial strength </param>
+            <param name="A_g"> Gross cross-sectional area of member </param>
+            <param name="PanelDeformationConsideredInAnalysis"> Identifies whether the effect of panel-zone deformation on frame stability is considered in the analysis </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.WebSideswayBuckling(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary> Calculates Concentrated force web sidesway buckling </summary>
+            <param name="M_u"> Required flexural strength </param>
+            <param name="M_y"> Moment at yielding of the extreme fiber </param>
+            <param name="b_f"> Width of flange </param>
+            <param name="t_f"> Thickness of flange </param>
+            <param name="t_w"> Thickness of web </param>
+            <param name="L_b_flange"> Largest laterally unbraced lengthalong either flange at the point of load </param>
+            <param name="h_web"> Clear distance between flanges less the fillet or corner radius for rolled shapes </param>
+            <param name="CompressionFlangeRestrained">Identifies whether comression flange is restrained</param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionAffectedElementsController.WhitmoreSectionWidth(System.Double,System.Double)">
+            <summary> Calculates Width of Whitmore section </summary>
+            <param name="l"> Length of connection or weld </param>
+            <param name="b_con"> Connection width </param>
+            <returns name="b_Whitmore"> Whitmore section width </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.SteelAISC10ConnectionBoltedController">
+             <summary>
+            Steel.AISC10.Connection.Bolted Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionBoltedController.BearingBoltNominalShearStress(System.String,System.String)">
+            <summary> Calculates bolt nominal shear stress from AISC Table J3.2 </summary>
+            <param name="BoltMaterialId"> Bolt material specification </param>
+            <param name="BoltThreadCase"> Identifies whether threads are included or excluded from shear planes </param>
+            <returns name="F_nv"> Nominal shear stress </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionBoltedController.BearingBoltShearStrength(System.Double,System.String,System.String,System.Double,System.Boolean)">
+            <summary> Calculates bearing bolt shear strength </summary>
+            <param name="d_b"> Nominal fastener diameter </param>
+            <param name="BoltMaterialId"> Bolt material specification </param>
+            <param name="BoltThreadCase"> Identifies whether threads are included or excluded from shear planes </param>
+            <param name="NumberShearPlanes"> Number of shear planes </param>
+            <param name="IsEndLoadedConnectionWithLengthEfect"> Identifies whether connection is end-loaded with length over 38 inches </param>
+            <returns name="phiR_nv"> Connection shear strength </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionBoltedController.BearingStrengthAtBoltHole(System.String,System.Double,System.Double,System.Double,System.Double,System.Double,System.String,System.Boolean)">
+            <summary> Calculates Bearing strength at bolt hole </summary>
+            <param name="BoltHoleType"> Type of bolt hole </param>
+            <param name="l_c"> Clear distance in the direction of the force between the edge of the hole and the edge of the adjacent hole or edge of the material </param>
+            <param name="F_u"> Specified minimum tensile strength </param>
+            <param name="F_y"> Specified minimum yield stress </param>
+            <param name="d_b"> Nominal fastener diameter </param>
+            <param name="t"> Thickness of element plate or element wall </param>
+            <param name="BoltHoleDeformationType"> Identifies of bolt deformation is a design consideration </param>
+            <param name="IsUnstiffenedHollowSection"> Distinguishes between connections made using bolts that pass completely through an unstiffened box member or HSS and all other cases </param>
+            <returns name="phiR_nv"> Connection shear strength </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionBoltedController.BoltClearDistance(System.Double,System.Double,System.Double)">
+            <summary> Calculates Bolt minimum edge distance </summary>
+            <param name="l_BoltEdge"> Distance from bolt centerline to connected material edge </param>
+            <param name="l_BoltCenter"> Bolt centerline spacing </param>
+            <param name="d_hole"> Bolt hole diameter </param>
+            <returns>
+             name="l_cEdge" Clear distance from bolt centerline to connected material edge 
+             name="l_cCenter" Bolt clear centerline spacing 
+            </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionBoltedController.BoltGroupCoefficient(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Eccentrically loaded bolt group coefficient </summary>
+            <param name="N_rows"> Number of bolt rows in bolt groups </param>
+            <param name="N_cols"> Number of bolt columns in bolt groups </param>
+            <param name="p_h"> Horizontal bolt spacing </param>
+            <param name="p_v"> Vertical bolt spacing </param>
+            <param name="e_group"> Connection bolt or weld group eccentricity </param>
+            <param name="theta"> Angle of loading for eccentric bolt or weld group </param>
+            <returns>
+             name="C_BoltGroup" Coefficient for eccentrically loaded bolt group 
+             name="C_prime" Coefficient for bolt group subjected to pure moment 
+            </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionBoltedController.BoltGroupStrength(System.Double,System.Double)">
+            <summary> Calculates Eccentrically loaded bolt group strength </summary>
+            <param name="C_BoltGroup"> Coefficient for eccentrically loaded bolt group </param>
+            <param name="phiR_nv"> Connection shear strength </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionBoltedController.BoltHoleSize(System.Double,System.String,System.Boolean)">
+            <summary> Calculates Bolt nominal hole dimension </summary>
+            <param name="d_b"> Nominal fastener diameter </param>
+            <param name="BoltHoleType"> Type of bolt hole </param>
+            <param name="IsTensionOrShear"> Identifies whether limit state involves tension or shear (for bolt dimension calculations)</param>
+            <returns>
+             name="d_hole" Bolt hole diameter 
+             name="b_hole" Bolt hole width (long dimension) 
+            </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionBoltedController.BoltNominalTensileStress(System.String,System.String)">
+            <summary> Calculates bolt nominal tensile stress from AISC Table J3.2 </summary>
+            <param name="BoltMaterialId"> Bolt material specification </param>
+            <param name="BoltThreadCase"> Identifies whether threads are included or excluded from shear planes </param>
+            <returns name="F_nt"> Nominal tensile stress </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionBoltedController.BoltTensileStrength(System.Double,System.String,System.String)">
+            <summary> Calculates bolt tensile strength </summary>
+            <param name="d_b"> Nominal fastener diameter </param>
+            <param name="BoltMaterialId"> Bolt material specification </param>
+            <param name="BoltThreadCase"> Identifies whether threads are included or excluded from shear planes </param>
+            <returns name="phiR_nt"> Connection tensile strength </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionBoltedController.MaximumTensileForceWithEffectsOfPryingAction(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Prying action maximum tension force </summary>
+            <param name="d_b"> Nominal fastener diameter </param>
+            <param name="d_hole"> Bolt hole diameter (in the direction of prying action) </param>
+            <param name="t_p"> Thickness of plate </param>
+            <param name="a_edge"> Distance from edge of flange or leg of tensile element to bolt centerline, for prying action calculation </param>
+            <param name="b_stem"> Distance from tensile element to bolt centerline, for prying action calculation taken as distance to face of stem for tee and to centerline of leg for angle </param>
+            <param name="p"> Pitch </param>
+            <param name="B_bolt"> Design bolt tension using nominal tensile strength of bolt or modified to include effects of shear stress </param>
+            <param name="F_u"> Specified minimum tensile strength </param>
+            <returns name="phiT_n"> Tensile strength </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionBoltedController.MinimumPlateThicknessEffectsOfPryingAction(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Prying action minimum plate thickness </summary>
+            <param name="d_b"> Nominal fastener diameter </param>
+            <param name="d_hole"> Bolt hole diameter (in the direction of prying action) </param>
+            <param name="T_bolt"> Bolt tension </param>
+            <param name="a_edge"> Distance from edge of flange or leg of tensile element to bolt centerline, for prying action calculation </param>
+            <param name="b_stem"> Distance from tensile element to bolt centerline, for prying action calculation taken as distance to face of stem for tee and to centerline of leg for angle </param>
+            <param name="p"> Pitch </param>
+            <param name="B_bolt"> Design bolt tension using nominal tensile strength of bolt or modified to include effects of shear stress </param>
+            <param name="F_u"> Specified minimum tensile strength </param>
+            <returns name="t_min"> Minimum thickness of connection material </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionBoltedController.ModifiedBoltShearStrength(System.Double,System.Double,System.String,System.String)">
+            <summary> Calculates Bearing bolt combined tension and shear </summary>
+            <param name="V_u"> Required shear strength </param>
+            <param name="d_b"> Nominal fastener diameter </param>
+            <param name="BoltMaterialId"> Bolt material specification </param>
+            <param name="BoltThreadCase"> Identifies whether threads are included or excluded from shear planes </param>
+            <returns name="phiR_nt_modified"> Modified shear strength of bolt subjected to tension </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionBoltedController.SlipCriticalBoltCombinedTensionAndShear(System.Double,System.Double,System.String,System.String,System.String,System.String,System.Double)">
+            <summary> Calculates Modified shear strength slip-critical bolt combined tension and shear </summary>
+            <param name="d_b"> Nominal fastener diameter </param>
+            <param name="T_u"> Required tension force </param>
+            <param name="BoltMaterialId"> Bolt material specification </param>
+            <param name="BoltHoleType"> Type of bolt hole </param>
+            <param name="BoltFillerCase"> Distinguishes between filler cases for slip-critical bolt capacity calculations </param>
+            <param name="BoltFayingSurfaceClass"> Identifies the type of faying surface for a slip critical bolt </param>
+            <param name="NumberShearPlanes"> Number of shear planes </param>
+            <returns name="phiR_nModified"> Modified shear strength of bolt subjected to tension </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionBoltedController.SlipCriticalBoltShearStrength(System.Double,System.String,System.String,System.String,System.String,System.Double)">
+            <summary> Calculates Slip-critical bolt shear strength </summary>
+            <param name="d_b"> Nominal fastener diameter </param>
+            <param name="BoltMaterialId"> Bolt material specification </param>
+            <param name="BoltHoleType"> Type of bolt hole </param>
+            <param name="BoltFillerCase"> Distinguishes between filler cases for slip-critical bolt capacity calculations </param>
+            <param name="BoltFayingSurfaceClass"> Identifies the type of faying surface for a slip critical bolt </param>
+            <param name="NumberShearPlanes"> Number of shear planes </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.SteelAISC10ConnectionSpecialCaseExtendedSinglePlateController">
+             <summary>
+            Steel.AISC10.Connection.SpecialCase.ExtendedSinglePlate Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionSpecialCaseExtendedSinglePlateController.ExtendedSinglePlateFlexuralBucklingStrength(System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Flexural strength of extended single plate, using plate buckling equation for coped beams </summary>
+            <param name="a_bolts"> Distance from support to first line of bolts </param>
+            <param name="t_p"> Thickness of plate </param>
+            <param name="d_pl"> Depth of plate </param>
+            <param name="F_y"> Specified minimum yield stress of plate </param>
+            <returns name="phiM_n"> Moment strength </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionSpecialCaseExtendedSinglePlateController.ExtendedSinglePlateMaxPlateThickness(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Extended single plate maximum plate thickness </summary>
+            <param name="F_nv"> Nominal shear stress </param>
+            <param name="d_b"> Nominal fastener diameter </param>
+            <param name="C_prime"> Coefficient for bolt group subjected to pure moment </param>
+            <param name="F_yp"> Specified minimum yield stress of plate </param>
+            <param name="d_pl"> Depth of plate </param>
+            <param name="t_w"> Thickness of web </param>
+            <param name="L_ehBm"> Horizontal edge distance for bolts in connected beam </param>
+            <param name="L_ehPl"> Horizontal edge distance for bolts in connected plate </param>
+            <param name="N_cols"> Number of bolt columns in bolt groups </param>
+            <returns name="t_max"> Maximum plate thickness </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionSpecialCaseExtendedSinglePlateController.ExtendedSinglePlateShearStrengthWithoutStabilizer(System.Double,System.Double,System.Double,System.Double)">
+            <summary> Extended single plate shear strength if no stabilizer plates are added per AISC SCM Chapter 10 </summary>
+            <param name="d_pl"> Depth of plate </param>
+            <param name="t_p"> Thickness of plate </param>
+            <param name="a_bolts"> Distance from support to first line of bolts </param>
+            <param name="F_y"> Specified minimum yield stress </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionSpecialCaseExtendedSinglePlateController.StabilizedExtendedSinglePlateTorsionalMoment(System.Double,System.Double,System.Double)">
+            <summary> Extended single plate design torsional moment, to be compared with flexural strength of stabilized single plate per AISC SCM Chapter 10 </summary>
+            <param name="R_u"> Required strength </param>
+            <param name="t_w"> Thickness of web </param>
+            <param name="t_p"> Thickness of plate </param>
+            <returns name="M_tu"> Stabilized extended shear tab design moment </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionSpecialCaseExtendedSinglePlateController.StabilizedExtendedSinglePlateTorsionalStrength(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Flexural strength of extended single plate per AISC SCM Chapter 10 </summary>
+            <param name="R_u"> Required strength </param>
+            <param name="F_yp"> Specified minimum yield stress of plate </param>
+            <param name="d_pl"> Depth of plate </param>
+            <param name="t_p"> Thickness of plate </param>
+            <param name="L_bm"> Span length of beam </param>
+            <param name="F_ybm"> Specified minimum yield stress of beam </param>
+            <param name="b_f"> Width of flange </param>
+            <param name="t_w"> Thickness of web </param>
+            <returns name="phiM_n"> Moment strength </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.SteelAISC10ConnectionWeldedController">
+             <summary>
+            Steel.AISC10.Connection.Welded Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionWeldedController.FilletWeldGroupConcentricLoadStrength(System.String,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Calculates Concentrically loaded fillet weld group strength </summary>
+            <param name="WeldGroupPattern"> Weld group pattern type </param>
+            <param name="l_transv"> Length of transversely loaded welds </param>
+            <param name="l_longit"> Length of longitudinally loaded welds </param>
+            <param name="w_weld"> Size of weld leg </param>
+            <param name="F_EXX"> Filler metal classification strength </param>
+            <param name="theta"> Angle of load from vertical </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionWeldedController.FilletWeldGroupEccentricLoadStrength(System.Double,System.Double,System.Double)">
+            <summary> Calculates Eccentrically loaded fillet weld group strength </summary>
+            <param name="C_WeldGroup"> Coefficient for eccentrically loaded weld group </param>
+            <param name="l"> Length of connection or weld </param>
+            <param name="w_weld"> Size of fillet weld leg </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionWeldedController.FilletWeldGroupCoefficient(System.String,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary> Calculates Eccentrically loaded weld group coefficient </summary>
+            <param name="WeldGroupPattern"> Weld group pattern type </param>
+            <param name="l_Weld_horizontal"> Weld group horizontal dimension </param>
+            <param name="l_Weld_vertical"> Weld group vertical dimension </param>
+            <param name="e_group"> Connection bolt or weld group eccentricity </param>
+            <param name="theta"> Angle of loading for eccentric bolt or weld group </param>
+            <param name="w_weld"> Size of weld leg </param>
+            <param name="F_EXX"> Filler metal classification strength </param>
+            <param name="IsLoadOutOfPlane"> Indicates whether the load on bolt group is not in the plane of welds. In such case eccentricity is measured normal to the plane of welds. </param>
+            <returns>
+             name="C_WeldGroup" Coefficient for eccentrically loaded weld group 
+             name="phiR_n" Ultimate load value at given angle and eccentricity 
+            </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ConnectionWeldedController.WeldStrength(System.Double,System.String,System.String,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary> Calculates Weld strength </summary>
+            <param name="l_weld"> Weld length </param>
+            <param name="WeldType"> Weld type </param>
+            <param name="WeldLoadTypeId"> Type of load on weld under consideration </param>
+            <param name="t_weld"> Weld throat thickness </param>
+            <param name="F_EXX"> Filler metal classification strength </param>
+            <param name="A_nBase"> Area of base metal in a welded connection </param>
+            <param name="F_y"> Base metal specified minimum yield stress </param>
+            <param name="F_u"> Base metal tensile strength </param>
+            <param name="theta"> Angle of loading for eccentric bolt or weld group </param>
+            <param name="IgnoreBaseMetalChecks"> Indicates whether weld strength calculation should include base metal checks </param>
+            <returns name="phiR_n"> Strength of member or connection </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.SteelAISC10GeneralMaterialPropertiesController">
+             <summary>
+            Steel.AISC10.General.MaterialProperties Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10GeneralMaterialPropertiesController.MaterialMechanicalProperties(System.String,System.Double)">
+            <summary> Calculates yield and ultimate stress for slected steel material as well as modulus of elasticity and shear modulus </summary>
+            <param name="SteelMaterialId"> Steel material </param>
+            <param name="d_b"> Bolt diameter (if applicable) </param>
+            <returns>
+             name="F_y" Specified minimum yield stress 
+             name="F_u" Specified minimum tensile strength 
+             name="E" Modulus of elasticity of steel 
+             name="G" Shear modulus of elasticity of steel 
+            </returns>
+        </member>
+        <member name="T:Wosad.WebApi.Controllers.SteelAISC10ShearStrengthController">
+             <summary>
+            Steel.AISC10.Shear.Strength Dynamo Web Api Wrapper
+             </summary>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ShearStrengthController.ShearStrengthCircular(System.Double,System.Double,System.Boolean,System.Double,System.Double)">
+            <summary> Shear strength circular member </summary>
+            <param name="D"> Outside diameter of round HSS </param>
+            <param name="t_nom"> HSS and pipe nominal wall thickness </param>
+            <param name="Is_SAW_member"> Indicates whether HSS is a ERW or SAW </param>
+            <param name="L_v"> Distance from maximum to zero shear force </param>
+            <param name="F_y"> Specified minimum yield stress </param>
+            <returns name="phiV_n"> Shear strength </returns>
+        </member>
+        <member name="M:Wosad.WebApi.Controllers.SteelAISC10ShearStrengthController.ShearStrengthNonCircular(System.String,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary> Shear strength noncircular member </summary>
+            <param name="ShearCase"> Shape type for shear </param>
+            <param name="F_y"> Specified minimum yield stress </param>
+            <param name="t_w"> Thickness of web </param>
+            <param name="h"> Width of stiffened element </param>
+            <param name="a_s"> Clear distance between transverse stiffeners </param>
+            <param name="E"> Modulus of elasticity of steel </param>
+            <returns name="phiV_n"> Shear strength </returns>
+        </member>
         <member name="M:Wosad.WebApi.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
@@ -484,50 +1300,6 @@
             Initializes a new instance of the <see cref="T:Wosad.WebApi.Areas.HelpPage.XmlDocumentationProvider"/> class.
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
-        </member>
-        <member name="M:Wosad.WebApi.Controllers.SectionIRolledController.GetFull(System.Double,System.Double,System.Double,System.Double,System.Double)">
-            <summary>
-            Procedure retreives IRolled section mass properties
-            </summary>
-            <param name="depth"></param>
-            <param name="flangeWidth"></param>
-            <param name="flangeThickness"></param>
-            <param name="webThickness"></param>
-            <param name="filletDistance"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Wosad.WebApi.Controllers.SectionIRolledController.GetArea(System.Double,System.Double,System.Double,System.Double,System.Double)">
-            <summary>
-            Procedure retreives IRolled section area
-            </summary>
-            <param name="depth"></param>
-            <param name="flangeWidth"></param>
-            <param name="flangeThickness"></param>
-            <param name="webThickness"></param>
-            <param name="filletDistance"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Wosad.WebApi.Controllers.SectionIRolledController.GetMomentOfInertiaX(System.Double,System.Double,System.Double,System.Double,System.Double)">
-            <summary>
-            Procedure retreives IRolled section moment of inertia about X axis
-            </summary>
-            <param name="depth"></param>
-            <param name="flangeWidth"></param>
-            <param name="flangeThickness"></param>
-            <param name="webThickness"></param>
-            <param name="filletDistance"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Wosad.WebApi.Controllers.SectionIRolledController.GetMomentOfInertiaY(System.Double,System.Double,System.Double,System.Double,System.Double)">
-            <summary>
-            Procedure retreives IRolled section moment of inertia about Y axis
-            </summary>
-            <param name="depth"></param>
-            <param name="flangeWidth"></param>
-            <param name="flangeThickness"></param>
-            <param name="webThickness"></param>
-            <param name="filletDistance"></param>
-            <returns></returns>
         </member>
     </members>
 </doc>

@@ -2,6 +2,7 @@
 @using System.Web.Http.Description
 @using Wosad.WebApi.Areas.HelpPage.Models
 @using Wosad.WebApi.Areas.HelpPage.ModelDescriptions
+@using Wosad.WebApi.Areas.HelpPage.Extensions
 @model HelpPageApiModel
 
 @{
@@ -38,12 +39,12 @@
         <h3>Request Formats</h3>
         @Html.DisplayFor(m => m.SampleRequests, "Samples")
     }
-
+    
     <h2>Response Information</h2>
 
     <h3>Resource Description</h3>
 
-    <p>@description.ResponseDescription.Documentation</p>
+    <div>@Html.ResponseDocumentation(@description.ResponseDescription.Documentation)</div>
 
     @if (Model.ResourceDescription != null)
     {
